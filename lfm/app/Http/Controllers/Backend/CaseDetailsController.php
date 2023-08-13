@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CaseDetails;
+use App\Models\User;
 
 
 //Admin functions 
@@ -76,7 +78,7 @@ class CaseDetailsController extends Controller
 
 
 
-    //Admin =================
+    //Laywer =================================================================
     public function assignedCase(){
         $data=CaseDetails::select('Client_Name','Client_Email')->get();
         return $data;
@@ -154,8 +156,8 @@ class CaseDetailsController extends Controller
         //Validation
 
         $fid=$request->id;
-        dd($request);
-        CaseDetails::findOrFail($fid)->update([
+        //dd($request);
+        CaseDetails::where('id',$fid)->update([
             'Total_Fees' => $request->Total_Fees,
             'Paid' => $request->Paid, 
             'Due' => $request->Due,
@@ -180,5 +182,47 @@ class CaseDetailsController extends Controller
 
 
     } //end method
+
+
+    //All employee
+    public function AllLawyerFees(){
+        
+       
+        $alllawfees= User::where('role', "lawyer")->get();
+      
+        return view('finance.backend.employee.all_law_fees',compact('alllawfees'));
+        
+
+    }//end method 
+
+    public function AllAdminFees(){
+        
+       
+        $alladfees= User::where('role', "admin")->get();
+      
+        return view('finance.backend.employee.all_admin_fees',compact('alladfees'));
+        
+
+    }//end method
+
+    public function AllManageFees(){
+        
+       
+        $allmpfees= User::where('role', "managing partner")->get();
+      
+        return view('finance.backend.employee.all_manage_fees',compact('allmpfees'));
+        
+
+    }//end method
+
+    public function AllFinFees(){
+        
+       
+        $allfinancefees= User::where('role', "finance")->get();
+      
+        return view('finance.backend.employee.all_finance_fees',compact('allfinancefees'));
+        
+
+    }//end method
    
 }

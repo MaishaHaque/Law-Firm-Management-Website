@@ -22,21 +22,25 @@
                   <table id="dataTableExample" class="table">
                     <thead>
                       <tr>
-                        <th>Case ID</th>
-                        <th>Client Name</th>
+                        <th> ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Salary</th>
                         <th>Status</th>
-                        <th>Actions</th>
+
                         
                       </tr>
                     </thead>
                     <tbody>
 
 
-                    @foreach($afcases as $key => $item)
+                    @foreach($alllawfees as $key => $item)
                       <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $item->Client_Name}}</td>
-                        <td class="btn btn-outline-primary">{{ $item->Payment_Status }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->role }}</td>
+                        <td>{{ $item->salary  }}</td>
+                        <td class="btn btn-outline-primary">{{ $item->status }}</td>
                         
                         <td>
                 <a href="{{ route('detailsfees.case', $item->id)}}" class="btn btn-inverse-info"> Details </a>

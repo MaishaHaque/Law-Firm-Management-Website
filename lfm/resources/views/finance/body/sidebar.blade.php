@@ -32,6 +32,22 @@
                   <a href="{{ route('allcase.fees')}}" class="nav-link">Manage Case Fees</a>
                 </li>
 
+                <li class="nav-item">
+                  <a href="{{ route('alllaw.fees')}}" class="nav-link">Manage Lawyer Salary</a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ route('alladmin.fees')}}" class="nav-link">Manage Admin Salary</a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ route('allmanp.fees')}}" class="nav-link">Manage Managing Partner Salary</a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ route('allfin.fees')}}" class="nav-link">Manage Finance Team Salary</a>
+                </li>
+
               </ul>
             </div>
           </li>

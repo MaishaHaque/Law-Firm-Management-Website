@@ -161,6 +161,7 @@ Route::middleware(['auth','role:finance'])->group(function(){
     
     Route::controller(CaseDetailsController::class)->group(function(){
 
+        //case fees
         Route::get('/all/casesfees','AllCasesFees' )->name('allcase.fees'); #all case list
         //Route::get('/add/case','AddCase' )->name('add.case'); #add case page
         //Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #add new case to db
@@ -168,6 +169,13 @@ Route::middleware(['auth','role:finance'])->group(function(){
         Route::get('/edit/casefees/{id}','EditFeesCase' )->name('editfees.case'); #edit case to db
         Route::get('/details/casefees/{id}','InfoCaseFees' )->name('detailsfees.case'); #case fee details
         //Route::get('/assigned/cases','AssignedCases' )->name('assigned.cases'); #assigned case list
+
+        //employee salarys
+        Route::get('/all/lawyerfees','AllLawyerFees' )->name('alllaw.fees'); #all employee fees
+        Route::get('/all/adminfees','AllAdminFees' )->name('alladmin.fees'); #all admin fees
+        Route::get('/all/managefees','AllManageFees' )->name('allmanp.fees'); #all managing partner fees
+        Route::get('/all/finfees','AllFinFees' )->name('allfin.fees'); #all finance team fees
+
     });
 
 }); //end group Lawyer middleware

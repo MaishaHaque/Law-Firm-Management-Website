@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('Next_Court_Date')->nullable();
             $table->string('Opposition')->nullable();
             $table->string('Witness')->nullable();
-            $table->enum('Status',['Clear','Unpaid'])->default('Unpaid');
+            $table->enum('Assign_Status',['Ongoing','Unassigned','Completed','Withdrawn'])->default('Unassigned');
+            $table->enum('Payment_Status',['Clear','Unpaid'])->default('Unpaid');
             $table->float('Total_Fees')->nullable();
             $table->float('Paid')->nullable();
             $table->float('Due')->nullable();
