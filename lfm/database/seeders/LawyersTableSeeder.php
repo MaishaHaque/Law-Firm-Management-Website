@@ -24,9 +24,10 @@ class LawyersTableSeeder extends Seeder
                 'name' =>'admin',
                 'username'=>'admin',
                 'email' => 'admin@g.com',
-                'password' => Hash::make('11111'),
+                'password' => Hash::make('1111'),
                 'role' => 'admin',
                 'position' => 'admin',
+                'salary' => '10000',
             
             ],
 
@@ -38,6 +39,7 @@ class LawyersTableSeeder extends Seeder
                 'password' => Hash::make('2222'),
                 'role' => 'lawyer',
                 'position' => 'partner',
+                'salary' => '10000',
             
             ],
 
@@ -46,9 +48,10 @@ class LawyersTableSeeder extends Seeder
                 'name' =>'Mike Ross',
                 'username'=>'mikeross',
                 'email' => 'mikeross@rys.c',
-                'password' => Hash::make('mikeross'),
+                'password' => 'mikeross',
                 'role' => 'lawyer',
-                'position' => 'partner',
+                'position' => 'junior associate',
+                'salary' => '5000',
             
             ],
 
@@ -61,15 +64,53 @@ class LawyersTableSeeder extends Seeder
                 'password' => Hash::make('3333'),
                 'role' => 'managing partner',
                 'position' => 'partner',
+                'salary' => '20000',
+            
+            ],
+
+            //Finance Team
+            [
+                'name' =>'finance',
+                'username'=>'financer',
+                'email' => 'finance@gmail.com',
+                'password' => Hash::make('4444'),
+                'role' => 'finance',
+                'position' => 'payroll manager',
+                'salary' => '7000',
             
             ],
 
         ]);
 
+        //Cases
+
+        //Case1
         DB::table('case_details')->insert([
             "Client_Name" => "Client One",
             'Client_Email' =>'client1@rys.c',
             'Opposition'=> 'Opposition 1',
+            "Total_Fees"=>10000,
+        ]);
+
+
+        //Case2
+        DB::table('case_details')->insert([
+            "Client_Name" => "Rachel Green",
+            'Client_Email' =>'rachel.green@friends',
+            'Opposition'=> 'Ross Geller',
+            'Witness' =>'Chandler Bing',
+            "Total_Fees"=>20000,
+            
+        ]);
+
+
+        //Case3
+        DB::table('case_details')->insert([
+            "Client_Name" => "Sheldon Cooper",
+            'Client_Email' =>'sheldon.cooper@tbbt',
+            'Opposition'=> 'Leslie Winkle',
+            'Witness' =>'None',
+            "Total_Fees"=>5000,
         ]);
     }
 }

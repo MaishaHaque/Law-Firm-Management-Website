@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CaseDetails;
 
+
+//Admin functions 
 class CaseDetailsController extends Controller
 {
     public function AllCases(){
@@ -72,6 +74,9 @@ class CaseDetailsController extends Controller
 
     }
 
+
+
+    //Admin =================
     public function assignedCase(){
         $data=CaseDetails::select('Client_Name','Client_Email')->get();
         return $data;
@@ -130,5 +135,50 @@ class CaseDetailsController extends Controller
 
 
     }
+
+    //======Finances=============================
+
+    public function AllCasesFees(){
+        $afcases= CaseDetails::latest()->get();
+        return view('finance.backend.cases.all_cases_fees',compact('afcases'));
+
+    }
+
+    public function EditFeesCase($id){
+        $efcases=CaseDetails::findOrFail($id);
+        return view('finance.backend.cases.edit_case_fees',compact('efcases'));
+    }// end method
+
+
+    public function UpdateCaseFees(Request $request){
+        //Validation
+
+        $fid=$request->id;
+        dd($request);
+        CaseDetails::findOrFail($fid)->update([
+            'Total_Fees' => $request->Total_Fees,
+            'Paid' => $request->Paid, 
+            'Due' => $request->Due,
+            
+        ]);
+
+        $notification = array(
+            'message' => ' Updated Successfully!!!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('allcase.fees')->with($notification);
+
+    }//end method
+
+
+    public function InfoCaseFees($iid){
+    
+        $dfcases=CaseDetails::findOrFail($iid);
+        return view('finance.backend.cases.details_case',compact('dfcases'));
+        
+
+
+    } //end method
    
 }

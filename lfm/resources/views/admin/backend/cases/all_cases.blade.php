@@ -57,7 +57,7 @@
                         <td>{{ $item->Witness}}</td>
                         <td>
                 <a href="{{ route('edit.case', $item->id)}}" class="btn btn-inverse-warning"> Edit </a>
-                <a href="" class="btn btn-inverse-danger"> Delete </a>
+                
                         </td>
                       </tr>
                     @endforeach()  

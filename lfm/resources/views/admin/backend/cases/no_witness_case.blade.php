@@ -34,7 +34,7 @@
                         <td>{{ $key->Assigned_Lawyer_2_ID}}</td>
                 
                 
-                <a href="" class="btn btn-inverse-danger"> Delete </a>
+                
                         </td>
                       </tr>
                     @endforeach()

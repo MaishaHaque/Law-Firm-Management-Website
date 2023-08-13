@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LawyerController;
 use App\Http\Controllers\ManageController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Backend\CaseDetailsController;
 use App\Http\Controllers\Backend\AssignedCaseController;
@@ -63,6 +64,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login'); #admin login
 
 Route::get('/lawyer/login', [LawyerController::class, 'LawyerLogin'])->name('lawyer.login'); #lawyer login
+
+Route::get('/finance/login', [FinanceController::class, 'FinanceLogin'])->name('finance.login'); #finance login
 //=================================================================================================================================================
 
 
@@ -93,6 +96,19 @@ Route::middleware(['auth','role:managing partner'])->group(function(){
 
 
 
+//==================================================================================================================================================
+Route::middleware(['auth','role:finance'])->group(function(){
+    Route::get('/finance/dashboard', [FinanceController::class, 'FinanceDashboard'])->name('finance.dashboard'); #finance dashboard
+
+    Route::get('/finance/logout', [FinanceController::class, 'FinanceLogout'])->name('finance.logout'); #finance logout
+
+    Route::get('/finance/profile', [FinanceController::class, 'FinanceProfile'])->name('finance.profile'); #finance profile
+
+    Route::get('/finance/change/password', [FinanceController::class, 'FinanceChangePassword'])->name('finance.change.password');   #finance change pass
+
+    Route::post('/finance/update/password', [FinanceController::class, 'FinanceUpdatePassword'])->name('finance.update.password');   #finance pass update
+}); //end group finance middleware
+
 
 
 //Admin Group Middleware--------------------------------------------------------------------------------------
@@ -101,7 +117,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     
     Route::controller(CaseDetailsController::class)->group(function(){
-        
+        Route::get('/add/case','AddCase' )->name('add.case'); #add case page
+        Route::get('/all/cases','AllCases' )->name('all.cases'); #all case list
         Route::get('/edit/case/{id}','EditCase' )->name('edit.case'); #edit case to db 
         Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #add new case to db
         Route::post('/store/case','StoreCase' )->name('store.case'); #add new case to db
@@ -118,24 +135,39 @@ Route::middleware(['auth','role:admin'])->group(function(){
 }); //end group admin middleware
 
 
+
+//Lawyer Group Middleware--------------------------------------------------------------------------------------
 Route::middleware(['auth','role:lawyer'])->group(function(){
     
 
     
     Route::controller(CaseDetailsController::class)->group(function(){
 
-        Route::get('/all/cases','AllCases' )->name('all.cases'); #all case list
-        Route::get('/add/case','AddCase' )->name('add.case'); #add case page
+       
         
-        Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #add new case to db
-
-        
+        Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #update assigned case to db
         Route::get('/edit/case/{id}','EditCase' )->name('edit.case'); #edit case to db
-
-
         Route::get('/details/case/{id}','InfoCase' )->name('info.case'); #case details
-
         Route::get('/assigned/cases','AssignedCases' )->name('assigned.cases'); #assigned case list
+    });
+
+}); //end group Lawyer middleware
+
+
+//Finance Group Middleware--------------------------------------------------------------------------------------
+Route::middleware(['auth','role:finance'])->group(function(){
+    
+
+    
+    Route::controller(CaseDetailsController::class)->group(function(){
+
+        Route::get('/all/casesfees','AllCasesFees' )->name('allcase.fees'); #all case list
+        //Route::get('/add/case','AddCase' )->name('add.case'); #add case page
+        //Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #add new case to db
+        Route::post('/update/casefees','UpdateCaseFees' )->name('upfees.case'); #update  case fees to db
+        Route::get('/edit/casefees/{id}','EditFeesCase' )->name('editfees.case'); #edit case to db
+        Route::get('/details/casefees/{id}','InfoCaseFees' )->name('detailsfees.case'); #case fee details
+        //Route::get('/assigned/cases','AssignedCases' )->name('assigned.cases'); #assigned case list
     });
 
 }); //end group Lawyer middleware
