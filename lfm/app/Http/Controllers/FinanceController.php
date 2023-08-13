@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\CaseDetails;
 Use Illuminate\Support\Facades\Hash;;
 use Illuminate\Http\RedirectResponse;
 
 class FinanceController extends Controller
 {
     public function FinanceDashboard(){
-        return view('finance.index'); 
-    } //end method
+        $totalInc = CaseDetails::sum('Paid');
+        return view('finance.index', compact('totalInc')); 
+    }
 
     public function FinanceLogout(Request $request){
         Auth::guard('web')->logout();

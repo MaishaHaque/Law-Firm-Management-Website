@@ -15,43 +15,35 @@
                 <div class="card">
               <div class="card-body">
 
-								<h6 class="card-title"> Edit Case Fees </h6>
-                <p class="text-muted mb-3">{{ $efcases->Client_Name }}</p>
+								<h6 class="card-title"> Edit Admin Salary </h6>
+                <p class="text-muted mb-3">{{ $eafcases->name }}</p>
 								<div class="row mb-3">
                             
-								<form method= "POST" action= "{{ route('upfees.case') }}" class="forms-sample" >
+								<form method= "POST" action= "{{ route('upadminfees.case') }}" class="forms-sample" >
 									@csrf
 
-                    <input type="hidden" name="id" value="{{ $efcases->id }}">  
+                    <input type="hidden" name="id" value="{{ $eafcases->id }}">  
 
                                     
 
 
                                     <div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Total_Fees</label>
-										<input type="text" name="Total_Fees" class="form-control @error('Total_Fees') is-invalid @enderror" value="{{ $efcases->Total_Fees }}">
+										<label for="exampleInputEmail1" class="form-label">Salary</label>
+										<input type="text" name="salary" class="form-control @error('salary') is-invalid @enderror" value="{{ $eafcases->salary }}">
                                         <!-- @error('Files')
                                         <span class="text-danger"> {{ $message }} </span>
                                         @enderror -->
 									</div>
 
                                     <div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Paid</label>
-										<input type="text" name="Paid" class="form-control @error('Paid') is-invalid @enderror" value="{{ $efcases->Paid }}">
+										<label for="exampleInputEmail1" class="form-label">Position</label>
+										<input type="text" name="position" class="form-control @error('position') is-invalid @enderror" value="{{ $eafcases->position }}">
                                         <!-- @error('Judge')
                                         <span class="text-danger"> {{ $message }} </span>
                                         @enderror -->
 									</div>
 
-                                    <div class="mb-3">
-										
-										<input type="hidden" name="Due" class="form-control @error('Due') is-invalid @enderror" value="{{ $efcases->Due }}">
-                                        <!-- @error('Opposition_Lawyer')
-                                        <span class="text-danger"> {{ $message }} </span>
-                                        @enderror -->
-									</div>
-
-
+                  
                   
 
 

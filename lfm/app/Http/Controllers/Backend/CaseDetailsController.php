@@ -138,8 +138,15 @@ class CaseDetailsController extends Controller
 
     }
 
-    //======Finances=============================
+    //======Finances============================================================================
+    public function Calc(){
+        $totalInc = CaseDetails::sum('Paid');
+        // $totalExp = CaseDetails::sum('Exp');
+        $calc = [$totalInc];
+        return view('finance.index', compact('calc')); 
+    }
 
+    //case fees +++++++++++++++++++++++++++++++++++++++++++++++++++
     public function AllCasesFees(){
         $afcases= CaseDetails::latest()->get();
         return view('finance.backend.cases.all_cases_fees',compact('afcases'));
@@ -160,17 +167,14 @@ class CaseDetailsController extends Controller
         CaseDetails::where('id',$fid)->update([
             'Total_Fees' => $request->Total_Fees,
             'Paid' => $request->Paid, 
-            'Due' => $request->Due,
-            
+            'Due' => $request->Total_Fees - $request->Paid,    
         ]);
 
         $notification = array(
             'message' => ' Updated Successfully!!!',
             'alert-type' => 'success'
         );
-
         return redirect()->route('allcase.fees')->with($notification);
-
     }//end method
 
 
@@ -184,45 +188,147 @@ class CaseDetailsController extends Controller
     } //end method
 
 
-    //All employee
-    public function AllLawyerFees(){
-        
-       
-        $alllawfees= User::where('role', "lawyer")->get();
-      
-        return view('finance.backend.employee.all_law_fees',compact('alllawfees'));
-        
+    //All employee +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    //lawyer fees functions ************************************** EditFeesLawyer
+    public function AllLawyerFees(){
+        $alllawfees= User::where('role', "lawyer")->get();
+        return view('finance.backend.employee.lawyer.all_law_fees',compact('alllawfees'));
     }//end method 
 
-    public function AllAdminFees(){
-        
-       
-        $alladfees= User::where('role', "admin")->get();
-      
-        return view('finance.backend.employee.all_admin_fees',compact('alladfees'));
-        
+    public function InfoLawyerFees($ld){
+    
+        $dlfcases=User::findOrFail($ld);
+        return view('finance.backend.employee.lawyer.details_law_case',compact('dlfcases'));
+    } //end method
 
+    public function EditFeesLawyer($id){
+        $elfcases=User::findOrFail($id);
+        return view('finance.backend.employee.lawyer.edit_lawyer_fees',compact('elfcases'));
+    }// end method
+
+    public function UpdateLawyerFees(Request $request){
+        //Validation
+        $fid=$request->id;
+        User::where('id',$fid)->update([
+            'salary' => $request->salary,
+            'position' => $request->position,   
+        ]);
+
+        $notification = array(
+            'message' => ' Salary Updated Successfully!!!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('alllaw.fees')->with($notification);
     }//end method
 
+    
+
+    //admin fees functions ************************************** 
+    public function AllAdminFees(){
+        $alladfees= User::where('role', "admin")->get();
+        return view('finance.backend.employee.admin.all_admin_fees',compact('alladfees'));
+    }//end method
+
+    public function InfoAdminFees($ad){
+    
+        $dafcases=User::findOrFail($ad);
+        return view('finance.backend.employee.admin.details_admin_case',compact('dafcases'));
+    } //end method
+
+
+    public function EditFeesAdmin($id){
+        $eafcases=CaseDetails::findOrFail($id);
+        return view('finance.backend.employee.admin.edit_admin_fees',compact('eafcases'));
+    }// end method
+
+    public function UpdateAdminFees(Request $request){
+        //Validation
+        $fid=$request->id;
+        User::where('id',$fid)->update([
+            'salary' => $request->salary,
+            'position' => $request->position,   
+        ]);
+
+        $notification = array(
+            'message' => ' Salary Updated Successfully!!!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('alladmin.fees')->with($notification);
+    }//end method
+
+//Managing Partner fees functions ************************************** 
     public function AllManageFees(){
         
        
         $allmpfees= User::where('role', "managing partner")->get();
       
-        return view('finance.backend.employee.all_manage_fees',compact('allmpfees'));
-        
-
+        return view('finance.backend.employee.manage.all_manage_fees',compact('allmpfees'));
     }//end method
 
+    public function InfoManageFees($ad){
+    
+        $dmfcases=User::findOrFail($ad);
+        return view('finance.backend.employee.manage.details_manage_case',compact('dmfcases'));
+    } //end method
+
+
+    public function EditFeesManage($id){
+        $emfcases=CaseDetails::findOrFail($id);
+        return view('finance.backend.employee.manage.edit_manage_fees',compact('emfcases'));
+    }// end method
+
+    public function UpdateManageFees(Request $request){
+        //Validation
+        $fid=$request->id;
+        User::where('id',$fid)->update([
+            'salary' => $request->salary,
+            'position' => $request->position,   
+        ]);
+
+        $notification = array(
+            'message' => ' Salary Updated Successfully!!!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('allmanp.fees')->with($notification);
+    }//end method
+
+//Finance fees functions ************************************** 
     public function AllFinFees(){
         
        
         $allfinancefees= User::where('role', "finance")->get();
       
-        return view('finance.backend.employee.all_finance_fees',compact('allfinancefees'));
+        return view('finance.backend.employee.finance.all_finance_fees',compact('allfinancefees'));
         
 
+    }//end method
+
+    public function InfoFinanceFees($ad){
+    
+        $dffcases=User::findOrFail($ad);
+        return view('finance.backend.employee.finance.details_finance_case',compact('dffcases'));
+    } //end method
+
+
+    public function EditFeesFinance($id){
+        $effcases=CaseDetails::findOrFail($id);
+        return view('finance.backend.employee.finance.edit_finance_fees',compact('effcases'));
+    }// end method
+
+    public function UpdateFinanceFees(Request $request){
+        //Validation
+        $fid=$request->id;
+        User::where('id',$fid)->update([
+            'salary' => $request->salary,
+            'position' => $request->position,   
+        ]);
+
+        $notification = array(
+            'message' => ' Salary Updated Successfully!!!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('allfin.fees')->with($notification);
     }//end method
    
 }

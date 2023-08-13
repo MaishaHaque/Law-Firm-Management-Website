@@ -20,7 +20,7 @@
                   </li>-->
                   <li class="ms-3 ps-3 border-start d-flex align-items-center">
                     <i class="me-1 icon-md" data-feather="user"></i>
-                    <a class="pt-1px d-none d-md-block text-body" href="#">{{  $dfcases->Client_Name }}</a>
+                    <a class="pt-1px d-none d-md-block text-body" href="#">{{  $dffcases->name }}</a>
                   </li>
 
                   <li class="ms-3 ps-3 border-start d-flex align-items-center"> </li>
@@ -52,7 +52,7 @@
             <div class="card rounded">
               <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                  <h6 class="card-title mb-0">Case ID</h6>
+                  <h6 class="card-title mb-0">ID</h6>
                   <!-- 
                   <div class="dropdown">
                     <a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,14 +66,14 @@
                   </div>
                   -->
                 </div>
-                <p>{{   $dfcases->id  }}</p>
+                <p>{{   $dffcases->id  }}</p>
                 <div class="mt-3">
                   <label class="tx-11 fw-bolder mb-0 text-uppercase">Name</label>
-                  <p class="text-muted">{{  $dfcases->Client_Name }}</p>
+                  <p class="text-muted">{{  $dffcases->name }}</p>
                 </div>
                 <div class="mt-3">
                   <label class="tx-11 fw-bolder mb-0 text-uppercase">Email</label>
-                  <p class="text-muted"> {{$dfcases->Client_Email}}</p>
+                  <p class="text-muted"> {{$dffcases->email}}</p>
                 </div>
                 <!--
                 <div class="mt-3">
@@ -114,7 +114,7 @@
                       
 
                         <div class="ms-2">
-                          <p>Total Fees</p>
+                          <p>Salary</p>
                         </div>
                       </div>
                       
@@ -124,7 +124,7 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <p class="mb-3 tx-14"> {{  $dfcases->Total_Fees  }}</p>
+                    <p class="mb-3 tx-14"> {{  $dffcases->salary  }}</p>
                   </div>
                   
                 </div>
@@ -140,7 +140,7 @@
                       
 
                         <div class="ms-2">
-                          <p>Paid</p>
+                          <p>Position</p>
                         </div>
                       </div>
                       
@@ -150,37 +150,13 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <p class="mb-3 tx-14"> {{  $dfcases->Paid  }}</p>
+                    <p class="mb-3 tx-14"> {{  $dffcases->position  }}</p>
                   </div>
                   
                 </div>
               </div>
 
-              <div class="col-md-12 grid-margin">
-                <div class="card rounded">
-                  <div class="card-header">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="d-flex align-items-center">
-                        
-                      
-
-                        <div class="ms-2">
-                          <p>Due</p>
-                        </div>
-                      </div>
-                      
-                      <div class="dropdown">
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-3 tx-14"> {{  $dfcases->Total_Fees - $dfcases->Paid }}</p>
-                  </div>
-                  
-                </div>
-              </div>
-
+             
 
 
 
@@ -199,24 +175,18 @@
               <div class="col-md-12 grid-margin">
                 <div class="card rounded">
                   <div class="card-body">
-                    <h6 class="card-title">Assigned Lawyers</h6>
+                    <h6 class="card-title">Employee Status</h6>
                     <div class="row ms-0 me-0">
 
                     <div class="mt-3">
-                      <label class="tx-11 fw-bolder mb-0 text-uppercase">Lawyer 1</label>
-                      <p class="text-muted"> {{ $dfcases->Assigned_Lawyer_1_ID }}</p>
+                      <label class="tx-11 fw-bolder mb-0 text-uppercase">Status</label>
+                      <p class="text-muted"> {{ $dffcases->status }}</p>
                     </div>
 
-                    <div class="mt-3">
-                      <label class="tx-11 fw-bolder mb-0 text-uppercase">Lawyer 2</label>
-                      <p class="text-muted"> {{ $dfcases->Assigned_Lawyer_2_ID }}</p>
-                    </div>
+                    
 
 
-                    <div class="mt-3">
-                      <label class="tx-11 fw-bolder mb-0 text-uppercase">Paralegal</label>
-                      <p class="text-muted"> {{ $dfcases->Paralegal_ID  }}</p>
-                    </div>
+                    
                       <!--
                       <a href="javascript:;" class="col-md-4 ps-1 pe-1">
                         <figure class="mb-2">
@@ -273,34 +243,20 @@
               <div class="col-md-12 grid-margin">
                 <div class="card rounded">
                   <div class="card-body">
-                    <h6 class="card-title">Dates</h6>
+                    <h6 class="card-title">Date</h6>
 
                     <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
                       <div class="d-flex align-items-center hover-pointer">										
                         <div class="ms-2">
-                          <p>Next Court Date</p>
-                          <p class="tx-11 text-muted"> {{  $dfcases->Next_Court_Date }}</p>
+                          <p>Joined</p>
+                          <p class="tx-11 text-muted"> {{  $dffcases->created_at }}</p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                      <div class="d-flex align-items-center hover-pointer">										
-                        <div class="ms-2">
-                          <p>Opening Date</p>
-                          <p class="tx-11 text-muted"> {{  $dfcases->Opening_Date }}</p>
-                        </div>
-                      </div>
-                    </div>
+                    
 
-                    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                      <div class="d-flex align-items-center hover-pointer">										
-                        <div class="ms-2">
-                          <p>Closing Date</p>
-                          <p class="tx-11 text-muted"> {{  $dfcases->Closing_Date }}</p>
-                        </div>
-                      </div>
-                    </div>
+                  
 
 
 

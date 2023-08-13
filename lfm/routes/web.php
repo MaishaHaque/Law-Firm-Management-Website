@@ -98,7 +98,7 @@ Route::middleware(['auth','role:managing partner'])->group(function(){
 
 //==================================================================================================================================================
 Route::middleware(['auth','role:finance'])->group(function(){
-    Route::get('/finance/dashboard', [FinanceController::class, 'FinanceDashboard'])->name('finance.dashboard'); #finance dashboard
+    Route::get('/finance/dashboard', [CaseDetailsController::class, 'Calc'])->name('finance.dashboard'); #finance dashboard
 
     Route::get('/finance/logout', [FinanceController::class, 'FinanceLogout'])->name('finance.logout'); #finance logout
 
@@ -166,16 +166,33 @@ Route::middleware(['auth','role:finance'])->group(function(){
         //Route::get('/add/case','AddCase' )->name('add.case'); #add case page
         //Route::post('/edit/assignedcase','EditAssignedCase' )->name('editas.case'); #add new case to db
         Route::post('/update/casefees','UpdateCaseFees' )->name('upfees.case'); #update  case fees to db
-        Route::get('/edit/casefees/{id}','EditFeesCase' )->name('editfees.case'); #edit case to db
+        Route::get('/edit/casefees/{id}','EditFeesCase' )->name('editfees.case'); #edit case fees to db
         Route::get('/details/casefees/{id}','InfoCaseFees' )->name('detailsfees.case'); #case fee details
         //Route::get('/assigned/cases','AssignedCases' )->name('assigned.cases'); #assigned case list
 
         //employee salarys
-        Route::get('/all/lawyerfees','AllLawyerFees' )->name('alllaw.fees'); #all employee fees
+                //Lawyer fees  
+        Route::get('/all/lawyerfees','AllLawyerFees' )->name('alllaw.fees'); #all employee fees 
+        Route::get('/details/lawfees/{id}','InfoLawyerFees' )->name('detailslawfees.case'); #law fee details
+        Route::get('/edit/lawyerfees/{id}','EditFeesLawyer' )->name('editlawfees.case'); #edit admin fees to db
+        Route::post('/update/lawyerfees','UpdateLawyerFees' )->name('uplawyerfees.case'); #update  case fees to db
+                //Admin fees 
         Route::get('/all/adminfees','AllAdminFees' )->name('alladmin.fees'); #all admin fees
+        Route::get('/details/adminfees/{id}','InfoAdminFees' )->name('detailsadminfees.case'); #admin fee details
+        Route::get('/edit/adminfees/{id}','EditFeesAdmin' )->name('editadminfees.case'); #edit admin fees to db
+        Route::post('/update/adminfees','UpdateAdminFees' )->name('upadminfees.case'); #update  case fees to db
+                //Manage fees 
         Route::get('/all/managefees','AllManageFees' )->name('allmanp.fees'); #all managing partner fees
+        Route::get('/details/managefees/{id}','InfoManageFees' )->name('detailsmanagefees.case'); #manager fee details
+        Route::get('/edit/managefees/{id}','EditFeesManage' )->name('editmanagefees.case'); #edit manager fees to db
+        Route::post('/update/managefees','UpdateManageFees' )->name('upmanagefees.case'); #update  manager fees to db
+
+                //Finance fees finance
         Route::get('/all/finfees','AllFinFees' )->name('allfin.fees'); #all finance team fees
+        Route::get('/details/financefees/{id}','InfoFinanceFees' )->name('detailsfinancefees.case'); #finance fee details
+        Route::get('/edit/financefees/{id}','EditFeesFinance' )->name('editfinancefees.case'); #edit finance fees to db
+        Route::post('/update/financefees','UpdateFinanceFees' )->name('upfinancefees.case'); #update  finance fees to db
 
     });
 
-}); //end group Lawyer middleware
+}); //end group FInance middleware
