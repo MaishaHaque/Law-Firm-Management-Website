@@ -44,6 +44,7 @@ require __DIR__.'/auth.php';
 //Admin Group Middleware
 Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard'); #admin dashboard
+
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout'); #admin logout
 
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile'); #admin profile
@@ -70,7 +71,7 @@ Route::get('/finance/login', [FinanceController::class, 'FinanceLogin'])->name('
 
 
 Route::middleware(['auth','role:lawyer'])->group(function(){
-    Route::get('/lawyer/dashboard', [CaseDetailsController::class, 'CountCases'])->name('lawyer.dashboard'); #lawyer dashboard
+    Route::get('/lawyer/dashboard', [LawyerController::class, 'LawyerDashboard'])->name('lawyer.dashboard'); #lawyer dashboard
 
     Route::get('/lawyer/logout', [LawyerController::class, 'LawyerLogout'])->name('lawyer.logout'); #lawyer logout
 
@@ -192,9 +193,6 @@ Route::middleware(['auth','role:finance'])->group(function(){
         Route::get('/edit/financefees/{id}','EditFeesFinance' )->name('editfinancefees.case'); #edit finance fees to db
         Route::post('/update/financefees','UpdateFinanceFees' )->name('upfinancefees.case'); #update  finance fees to db
 
-        Route::get('/all/allexp','AllOtherExp' )->name('all.exp'); #all expense
-        Route::get('/details/allexp','AddExp' )->name('add.exp'); #all expense
-        Route::post('/store/exp','StoreExp' )->name('store.exp'); #all expense
     });
 
 }); //end group FInance middleware

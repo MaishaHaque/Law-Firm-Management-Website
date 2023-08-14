@@ -11,44 +11,35 @@
 						<li class="breadcrumb-item active" aria-current="page">Data Table</li> -->
 					</ol>
 				</nav>
-
+        <a href="{{ route('add.exp')}}" class="btn btn-inverse-warning"> Add </a>
+        
 				<div class="row">
 					<div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">Admin Salary</h6>
+                <h6 class="card-title">Other Expenses</h6>
                 
                 <div class="table-responsive">
                   <table id="dataTableExample" class="table">
                     <thead>
                       <tr>
-                        <th> No.</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Salary</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-
+                        <th>Case ID</th>
+                        <th>Expenditure</th>
+                        <th>Amount</th>
                         
                       </tr>
                     </thead>
                     <tbody>
 
 
-                    @foreach($alladfees as $key => $item)
+                    @foreach($allexp as $key => $item)
                       <tr>
-
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->role }}</td>
-                        <td>{{ $item->salary  }}</td>
-                        <td class="btn btn-outline-primary">{{ $item->status }}</td>
+                        <td>{{ $item->Expenditure}}</td>
+                        <td>{{ $item->Amount }}</td>
                         
                         <td>
-                <a href="{{ route('detailsadminfees.case', $item->id)}}" class="btn btn-inverse-info"> Details </a>
-                <a href="{{ route('editadminfees.case', $item->id)}}" class="btn btn-inverse-warning"> Update </a>
+                <!-- <a href="{{ route('add.exp', $item->id)}}" class="btn btn-inverse-warning"> Add </a> -->
                 
                 
                         </td>

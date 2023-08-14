@@ -32,18 +32,7 @@
                   <a href="{{ route('allcase.fees')}}" class="nav-link">Manage Case Fees</a>
                 </li>
 
-                
-              </ul>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-              <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">Salary</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
-
-              <li class="nav-item">
+                <li class="nav-item">
                   <a href="{{ route('alllaw.fees')}}" class="nav-link">Manage Lawyer Salary</a>
                 </li>
 
@@ -57,21 +46,6 @@
 
                 <li class="nav-item">
                   <a href="{{ route('allfin.fees')}}" class="nav-link">Manage Finance Team Salary</a>
-                </li>
-
-
-              </ul>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-              <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">Other expenses</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
-
-                <li class="nav-item">
-                  <a href="{{ route('all.exp')}}" class="nav-link">Manage Expenses</a>
                 </li>
 
               </ul>

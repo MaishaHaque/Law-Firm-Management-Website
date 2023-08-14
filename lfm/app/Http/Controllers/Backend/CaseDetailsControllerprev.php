@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CaseDetails;
 use App\Models\User;
-use App\Models\OtherExpense;
+
 
 //Admin functions 
 class CaseDetailsController extends Controller
@@ -84,26 +84,11 @@ class CaseDetailsController extends Controller
         return $data;
     }
 
-    public function CountCases(){
-        $id= Auth::user()->id;
-        
-        $totalacases = CaseDetails::where('Assigned_Lawyer_1_ID', $id)->orwhere('Assigned_Lawyer_2_ID', $id)->count();
-        
-        $totalo1cases = CaseDetails::where('Assigned_Lawyer_1_ID', $id)->where('Assign_Status', "Ongoing")->count();
-        $totalo2cases = CaseDetails::where('Assigned_Lawyer_2_ID', $id)->where('Assign_Status', "Ongoing")->count();
-        $totalocases=$totalo1cases+$totalo2cases;
-
-        $totalc1cases = CaseDetails::where('Assigned_Lawyer_1_ID', $id)->where('Assign_Status', "Completed")->count();
-        $totalc2cases = CaseDetails::where('Assigned_Lawyer_2_ID', $id)->where('Assign_Status', "Completed")->count();
-        $totalccases=$totalc1cases+$totalc2cases;
-        return view('lawyer.index', compact('totalacases','totalocases','totalccases')); 
-    }
-
 
     
     public function  AssignedCases(){
         $id= Auth::user()->id;
-        $asscases= CaseDetails::where('Assigned_Lawyer_1_ID', $id)->orwhere('Assigned_Lawyer_2_ID', $id)->get();
+        $asscases= CaseDetails::where('Assigned_Lawyer_1_ID', $id)->get();
         //$users = DB::select('select * from users where active = ?', [1]);
  
         //return view('user.index', ['users' => $users]);
@@ -113,11 +98,8 @@ class CaseDetailsController extends Controller
 
     public function EditCase($id){
         $ecases=CaseDetails::findOrFail($id);
-        $comp="Completed";
-        $ong="Ongoing";
-        return view('lawyer.backend.cases.edit_case',compact('ecases','ong','comp','id'));
+        return view('lawyer.backend.cases.edit_case',compact('ecases'));
     }// end method
-
 
 
     public function EditAssignedCase(Request $request){
@@ -125,9 +107,7 @@ class CaseDetailsController extends Controller
 
         $pid=$request->id;
 
-        
-        
-        CaseDetails::where('id',$pid)->update([
+        CaseDetails::findOrFail($pid)->update([
             'Client_Name' => $request->Client_Name,
             'Files' => $request->Files,
             'Judge' => $request->Judge, 
@@ -135,7 +115,6 @@ class CaseDetailsController extends Controller
             'Next_Court_Date' => $request->Next_Court_Date,
             'Opposition' => $request->Opposition,
             'Witness' => $request->Witness,
-            'Assign_Status' => $request->Assign_Status,
         ]);
 
         $notification = array(
@@ -162,12 +141,8 @@ class CaseDetailsController extends Controller
     //======Finances============================================================================
     public function Calc(){
         $totalInc = CaseDetails::sum('Paid');
-        $totalSal = User::sum('Salary');
-        $totalSpent = OtherExpense::sum('Amount');
-
-        $totalExp = $totalSal + $totalSpent;
-        $profit = $totalInc - $totalExp;
-        $calc = [$totalInc, $totalExp, $profit];
+        // $totalExp = CaseDetails::sum('Exp');
+        $calc = [$totalInc];
         return view('finance.index', compact('calc')); 
     }
 
@@ -299,7 +274,7 @@ class CaseDetailsController extends Controller
 
 
     public function EditFeesManage($id){
-        $emfcases=User::findOrFail($id);
+        $emfcases=CaseDetails::findOrFail($id);
         return view('finance.backend.employee.manage.edit_manage_fees',compact('emfcases'));
     }// end method
 
@@ -337,7 +312,7 @@ class CaseDetailsController extends Controller
 
 
     public function EditFeesFinance($id){
-        $effcases=User::findOrFail($id);
+        $effcases=CaseDetails::findOrFail($id);
         return view('finance.backend.employee.finance.edit_finance_fees',compact('effcases'));
     }// end method
 
@@ -355,29 +330,5 @@ class CaseDetailsController extends Controller
         );
         return redirect()->route('allfin.fees')->with($notification);
     }//end method
-
-    public function AllOtherExp(){
-        $allexp = OtherExpense::get();
-        return view('finance.backend.otherExp.all_other_exp', compact('allexp'));
-    }
-
-    public function AddExp(){
-        return view('finance.backend.otherExp.add_exp');
-    }
-
-    public function StoreExp(Request $request){
-        OtherExpense::insert([
-            'Expenditure'=> $request->Expenditure,
-            'Amount'=> $request->Amount
-        ]);
-
-
-        $notification = array(
-            'message' => 'Expense Added Successfully!!!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.exp')->with($notification);
-    }
    
 }

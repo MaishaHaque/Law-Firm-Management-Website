@@ -22,7 +22,7 @@
 								<form method= "POST" action= "{{ route('upfinancefees.case') }}" class="forms-sample" >
 									@csrf
 
-                    <input type="hidden" name="id" value="{{ $effcases->id }}">  
+                    <input type="hidden" name="id" value="{{ $emfcases->id }}">  
 
                                     
 
@@ -36,8 +36,8 @@
 									</div>
 
                                     <div class="mb-3">
-										<!-- <label for="exampleInputEmail1" class="form-label">Position</label> -->
-										<input type="hidden" name="position" class="form-control @error('position') is-invalid @enderror" value="{{ $effcases->position }}">
+										<label for="exampleInputEmail1" class="form-label">Position</label>
+										<input type="text" name="position" class="form-control @error('position') is-invalid @enderror" value="{{ $effcases->position }}">
                                         <!-- @error('Judge')
                                         <span class="text-danger"> {{ $message }} </span>
                                         @enderror -->

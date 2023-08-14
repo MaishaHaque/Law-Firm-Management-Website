@@ -1,5 +1,6 @@
 @extends('finance.finance_dashboard')
 @section('finance')
+
 <div class="page-content">
             @php 
             $id= Auth::user()->id;
@@ -61,7 +62,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">2</h3>
+                        <h3 class="mb-2">{{ $calc[1] }}</h3>
                         <!--<div class="d-flex align-items-baseline">
                           <p class="text-danger">
                             <span>-2.8%</span>
@@ -87,7 +88,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">0</h3>
+                        <h3 class="mb-2">{{ $calc[2] }}</h3>
                          <!--<div class="d-flex align-items-baseline">
                           <p class="text-success">
                             <span>+2.8%</span>

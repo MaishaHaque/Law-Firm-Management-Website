@@ -1,5 +1,5 @@
-@extends('lawyer.lawyer_dashboard')
-@section('lawyer')
+@extends('finance.finance_dashboard')
+@section('finance')
 <div class="page-content">
             @php 
             $id= Auth::user()->id;
@@ -27,7 +27,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">Assigned Cases</h6>
+                      <h6 class="card-title mb-0">Income</h6>
                       <div class="dropdown mb-2">
                         
                         
@@ -35,7 +35,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">{{ $totalacases }}</h3>
+                        <h3 class="mb-2">{{ $calc[0] }}</h3>
                         <!--<div class="d-flex align-items-baseline">
                           <p class="text-success">
                             <span>+3.3%</span>
@@ -54,14 +54,14 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">Open Cases</h6>
+                      <h6 class="card-title mb-0">Expense</h6>
                       <div class="dropdown mb-2">
                         
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">{{ $totalocases }}</h3>
+                        <h3 class="mb-2">2</h3>
                         <!--<div class="d-flex align-items-baseline">
                           <p class="text-danger">
                             <span>-2.8%</span>
@@ -80,14 +80,14 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline">
-                      <h6 class="card-title mb-0">Closed Cases</h6>
+                      <h6 class="card-title mb-0">Profit</h6>
                       <div class="dropdown mb-2">
                         
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">{{ $totalccases }}</h3>
+                        <h3 class="mb-2">0</h3>
                          <!--<div class="d-flex align-items-baseline">
                           <p class="text-success">
                             <span>+2.8%</span>

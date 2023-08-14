@@ -16,7 +16,7 @@
 					<div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">Case Fees</h6>
+                <h6 class="card-title">Finance Team Salary</h6>
                 
                 <div class="table-responsive">
                   <table id="dataTableExample" class="table">
@@ -28,6 +28,7 @@
                         <th>Role</th>
                         <th>Salary</th>
                         <th>Status</th>
+                        <th>Actions</th>
 
                         
                       </tr>

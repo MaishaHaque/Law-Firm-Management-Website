@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\CaseDetails;
 Use Illuminate\Support\Facades\Hash;;
 use Illuminate\Http\RedirectResponse;
-use App\Models\CaseDetails;
 
 class FinanceController extends Controller
 {
@@ -17,7 +17,6 @@ class FinanceController extends Controller
     }
 
     public function FinanceLogout(Request $request){
-        // dd($request);
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -28,7 +27,7 @@ class FinanceController extends Controller
     } //End method
 
     public function FinanceLogin(){
-        return view('admin.admin_login');
+        return view('finance.finance_login');
     } //End method
 
 

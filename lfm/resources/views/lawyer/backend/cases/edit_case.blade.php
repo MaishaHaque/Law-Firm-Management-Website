@@ -82,6 +82,45 @@
                                         @enderror -->
 									</div>
 
+                  <div class="mb-3">
+										<label for="exampleInputEmail1" class="form-label">Status</label>
+										<input type="text" name="Assign_Status" class="form-control @error('Assign_Status') is-invalid @enderror" value="{{ $ecases->Assign_Status }}">
+                                         @error('Assign_Status')
+                                        <span class="text-danger"> {{ $message }} </span>
+                                        @enderror
+									</div>
+
+                  <!--<div class="mb-3">
+										<label class="form-label">Status</label>
+                    <div>
+
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="Assign_Status" id="Assign_Status" value="{{ $ecases->Assign_Cases }}">
+                        <label class="form-check-label" for="Assign_Status1">
+                        {{ $ong }}
+                        </label>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="Assign_Status" id="Assign_Status"  value="{{ $ecases->Assign_Cases }}">
+                        <label class="form-check-label" for="Assign_Status" >
+                        {{ $comp }}
+                        </label>
+                      </div> -->
+
+
+                      
+                      
+                    </div>
+                  </div>
+                <!--<div class="mb-3">
+									<label class="form-label">Status</label>
+									<select class="js-example-basic-single form-select" data-width="100%" name="Assign_Status">
+										<option   value="{{ $ecases->Assign_Status }}">{{ $ong }}</option>
+										<option   value="{{ $ecases->Assign_Status }}">{{ $comp }}</option>
+									</select>
+								</div> -->
+
 
 
 

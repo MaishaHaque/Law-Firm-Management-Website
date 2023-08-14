@@ -15,29 +15,29 @@
                 <div class="card">
               <div class="card-body">
 
-								<h6 class="card-title"> Edit Finance Team Member Salary </h6>
-                <p class="text-muted mb-3">{{ $effcases->name }}</p>
+								<h6 class="card-title"> Edit Managing Partner Salary </h6>
+                <p class="text-muted mb-3">{{ $emfcases->name }}</p>
 								<div class="row mb-3">
                             
-								<form method= "POST" action= "{{ route('upfinancefees.case') }}" class="forms-sample" >
+								<form method= "POST" action= "{{ route('upmanagefees.case') }}" class="forms-sample" >
 									@csrf
 
-                    <input type="hidden" name="id" value="{{ $effcases->id }}">  
+                    <input type="hidden" name="id" value="{{ $emfcases->id }}">  
 
                                     
 
 
                                     <div class="mb-3">
 										<label for="exampleInputEmail1" class="form-label">Salary</label>
-										<input type="text" name="salary" class="form-control @error('salary') is-invalid @enderror" value="{{ $effcases->salary }}">
+										<input type="text" name="salary" class="form-control @error('salary') is-invalid @enderror" value="{{ $emfcases->salary }}">
                                         <!-- @error('Files')
                                         <span class="text-danger"> {{ $message }} </span>
                                         @enderror -->
 									</div>
 
                                     <div class="mb-3">
-										<!-- <label for="exampleInputEmail1" class="form-label">Position</label> -->
-										<input type="hidden" name="position" class="form-control @error('position') is-invalid @enderror" value="{{ $effcases->position }}">
+										<label for="exampleInputEmail1" class="form-label">Position</label>
+										<input type="text" name="position" class="form-control @error('position') is-invalid @enderror" value="{{ $emfcases->position }}">
                                         <!-- @error('Judge')
                                         <span class="text-danger"> {{ $message }} </span>
                                         @enderror -->

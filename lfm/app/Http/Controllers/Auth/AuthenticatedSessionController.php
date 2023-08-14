@@ -36,6 +36,8 @@ class AuthenticatedSessionController extends Controller
             $url='/lawyer/dashboard';
         } elseif($request->user()->role === 'managing partner'){
             $url='/manage/dashboard';
+        } elseif($request->user()->role === 'finance'){
+            $url='/finance/dashboard';
         }
 
         return redirect()->intended($url);
